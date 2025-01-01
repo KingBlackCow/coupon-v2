@@ -11,7 +11,7 @@
 ## 3. 최상단 settings.gradle 파일 수정
 ```
 rootProject.name = "최상단 프로젝트명"
-include("모듈1", "모듈2", "모듈3")
+include("모듈1", "모듈2", "모듈3")`
 ```
 
 ## 4. 최상위 모듈의 build.gradle 파일 수정
