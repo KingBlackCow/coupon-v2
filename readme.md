@@ -83,4 +83,31 @@ tasks.withType<Test> {
 }
 ```
 
+--- 
+## locust
+
+1. master와 worker 설정
+```angular2html
+version: '3.7'
+services:
+master:
+image: locustio/locust
+ports:
+- "8089:8089"
+volumes:
+- ./:/mnt/locust
+command: -f /mnt/locust/locustfile-hello.py --master -H http://host.docker.internal:8082
+
+worker:
+image: locustio/locust
+volumes:
+- ./:/mnt/locust
+command: -f /mnt/locust/locustfile-hello.py --worker --master-host master
+```
+
+2. worcker 수 증가
+```angular2html
+docker-compose up --scale worker=3
+```
+
 
