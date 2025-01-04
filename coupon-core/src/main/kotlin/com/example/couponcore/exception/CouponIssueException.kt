@@ -1,12 +1,10 @@
 package com.example.couponcore.exception
 
-import lombok.Getter
+class CouponIssueException(
+    val errorCode: ErrorCode,
+    private val errorMessage: String
+) : RuntimeException() {
 
-@Getter
-class CouponIssueException(errorCode: ErrorCode, override val message: String) : RuntimeException() {
-    private val errorCode: ErrorCode = errorCode
-
-    fun getMessage(): String {
-        return "[%s] %s".formatted(errorCode, message)
-    }
+    override val message: String
+        get() = "[${errorCode}] $errorMessage"
 }
