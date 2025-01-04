@@ -1,33 +1,32 @@
 package com.example.couponcore.model
 
 import jakarta.persistence.*
-import lombok.AllArgsConstructor
-import lombok.Builder
+import lombok.AccessLevel
 import lombok.Getter
 import lombok.NoArgsConstructor
 import org.springframework.data.annotation.CreatedDate
 import java.time.LocalDateTime
 
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Getter
 @Entity
 @Table(name = "coupon_issues")
-class CouponIssue : BaseTimeEntity() {
+class CouponIssue(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long? = null
+    private val id: Long = 0L,
 
     @Column(nullable = false)
-    private var couponId: Long? = null
+    private var couponId: Long,
 
     @Column(nullable = false)
-    private var userId: Long? = null
+    private var userId: Long,
 
     @Column(nullable = false)
     @CreatedDate
-    private var dateIssued: LocalDateTime? = null
+    private var dateIssued: LocalDateTime? = null,
 
     private val dateUsed: LocalDateTime? = null
+) : BaseTimeEntity() {
+
 }

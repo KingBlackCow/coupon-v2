@@ -3,46 +3,43 @@ package com.example.couponcore.model
 import com.example.couponcore.exception.CouponIssueException
 import com.example.couponcore.exception.ErrorCode
 import jakarta.persistence.*
-import lombok.AllArgsConstructor
-import lombok.Builder
 import lombok.Getter
-import lombok.NoArgsConstructor
 import java.time.LocalDateTime
 
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Entity
 @Table(name = "coupons")
-class Coupon : BaseTimeEntity() {
+class Coupon(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long? = null
+    val id: Long = 0L,
 
     @Column(nullable = false)
-    private var title: String? = null
+    var title: String,
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
-    private var couponType: CouponType? = null
+    var couponType: CouponType,
 
-    private val totalQuantity: Int? = null
-
-    @Column(nullable = false)
-    private var issuedQuantity = 0
+    @Column(nullable = true)
+    val totalQuantity: Int? = null,
 
     @Column(nullable = false)
-    private var discountAmount = 0
+    var issuedQuantity: Int = 0,
 
     @Column(nullable = false)
-    private var minAvailableAmount = 0
+    var discountAmount: Int = 0,
 
     @Column(nullable = false)
-    private var dateIssueStart: LocalDateTime? = null
+    var minAvailableAmount: Int = 0,
 
     @Column(nullable = false)
-    private var dateIssueEnd: LocalDateTime? = null
+    var dateIssueStart: LocalDateTime,
+
+    @Column(nullable = false)
+    var dateIssueEnd: LocalDateTime
+
+) : BaseTimeEntity() {
 
     fun issue() {
         if (!availableIssueQuantity()) {
@@ -71,12 +68,12 @@ class Coupon : BaseTimeEntity() {
 
     fun availableIssueDate(): Boolean {
         val now = LocalDateTime.now()
-        return dateIssueStart!!.isBefore(now) && dateIssueEnd!!.isAfter(now)
+        return dateIssueStart.isBefore(now) && dateIssueEnd.isAfter(now)
     }
 
     val isIssueComplete: Boolean
         get() {
             val now = LocalDateTime.now()
-            return dateIssueEnd!!.isBefore(now) || !availableIssueQuantity()
+            return dateIssueEnd.isBefore(now) || !availableIssueQuantity()
         }
 }

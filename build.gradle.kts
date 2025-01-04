@@ -6,6 +6,7 @@ plugins {
     kotlin("jvm") version "1.9.10"
     kotlin("plugin.spring") version "1.9.10"
     kotlin("kapt") version "1.7.20"
+    kotlin("plugin.jpa") version "1.6.21"
     id("org.springframework.boot") version "3.1.5"
     id("io.spring.dependency-management") version "1.1.3"
 }
@@ -32,6 +33,7 @@ subprojects {
     apply(plugin = "org.jetbrains.kotlin.kapt")
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "org.springframework.boot")
+    apply(plugin = "org.jetbrains.kotlin.plugin.jpa")
 
     repositories {
         mavenCentral()
@@ -46,6 +48,7 @@ subprojects {
 
         implementation("org.springframework.boot:spring-boot-starter-actuator")
         implementation("io.micrometer:micrometer-registry-prometheus")
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
 
         // QueryDSL
         implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
