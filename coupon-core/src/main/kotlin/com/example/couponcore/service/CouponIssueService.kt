@@ -21,8 +21,6 @@ class CouponIssueService(
     private val couponIssueRepository: CouponIssueRepository,
     private val applicationEventPublisher: ApplicationEventPublisher
 ) {
-
-
     @Transactional
     fun issue(couponId: Long, userId: Long) {
         val coupon = findCoupon(couponId)
