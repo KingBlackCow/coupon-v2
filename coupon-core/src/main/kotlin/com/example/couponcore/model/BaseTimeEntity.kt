@@ -15,8 +15,8 @@ import java.time.LocalDateTime
 abstract class BaseTimeEntity {
 
     @CreatedDate
-    private val dateCreated: LocalDateTime? = null
+    private var dateCreated: LocalDateTime? = null
 
     @LastModifiedDate
-    private val dateUpdated: LocalDateTime? = null
+    private var dateUpdated: LocalDateTime? = null
 }

@@ -13,7 +13,7 @@ class CouponIssueRequestService(
     private val couponIssueService: CouponIssueService,
     private val distributeLockExecutor: DistributeLockExecutor,
 ) {
-    companion object: Log
+    companion object : Log
 
     fun issueRequestV1(requestDto: CouponIssueRequestDto) {
         distributeLockExecutor.execute(
