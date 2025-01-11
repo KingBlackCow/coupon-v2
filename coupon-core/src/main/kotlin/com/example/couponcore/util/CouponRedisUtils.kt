@@ -5,6 +5,7 @@ object CouponRedisUtils {
         return "issue.request.couponId=%s".formatted(couponId)
     }
 
-    val issueRequestQueueKey: String
-        get() = "issue.request"
+    fun getIssueRequestQueueKey(): String {
+        return "issue.request"
+    }
 }
